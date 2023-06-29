@@ -10,7 +10,7 @@ resource keyvault 'Microsoft.KeyVault/vaults@2022-07-01' = {
       name: 'standard'
       family: 'A'
     }
-    publicNetworkAccess: 'enabled' // Gasp!
+    enablePurgeProtection: false // Gasp!
     tenantId: tenant().tenantId
   }
 }
