@@ -1,4 +1,12 @@
-# reproduction steps
+# The issue
+
+Snyk's IaC testing tool appears to only scan the top-level deployment in an ARM template json file. Nested deployments are not scanned. Working directly with ARM json files has been mostly replaced by working in Bicep modules. These modules allow for convenient nesting of files, which helps against code-reuse and allows for nicer organisation of the code. This means that the resulting ARM jsons will generally have nested deployments.
+
+However, there are [first-party repositories offered by Azure containing bicep modules](https://github.com/Azure/ResourceModules), helping to further reduce code-reuse and saving on boilerplate. While we can compile the referenced bicep files into a single ARM json to be scanned by snyk, that doesn't work if snyk only scans the top-level deployment. 
+
+While in this MWE scanning all involved bicep (compiled into ARM) separately would be feasibly, this isn't really an option when using external bicep modules.
+
+# Reproduction steps
 
 1. Build ARM jsons
 
